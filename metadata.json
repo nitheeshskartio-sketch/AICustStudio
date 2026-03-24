@@ -1,0 +1,5 @@
+{
+  "name": "T-Shirt Customization Studio",
+  "description": "A fully functional product customization web application where users can edit T-shirts with text, images, and shapes.",
+  "requestFramePermissions": []
+}
