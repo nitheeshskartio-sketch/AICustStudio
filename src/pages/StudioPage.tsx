@@ -61,9 +61,9 @@ const StudioPage: React.FC = () => {
             onAddCircle={() => canvasRef.current?.addCircle()}
             onUploadImage={(file) => canvasRef.current?.uploadImage(file)}
             onDeleteSelected={() => canvasRef.current?.deleteSelected()}
-            onBringForward={() => canvasRef.current?.bringForward()}
-            onSendBackward={() => canvasRef.current?.sendBackward()}
             onResetCanvas={() => canvasRef.current?.resetCanvas()}
+            onUndo={() => canvasRef.current?.undo()}
+            onRedo={() => canvasRef.current?.redo()}
             onDownload={handleDownload}
             onSave={handleSave}
             onBackToProduct={() => navigate('/product')}
@@ -93,9 +93,14 @@ const StudioPage: React.FC = () => {
           <ObjectControls 
             selectedObject={selectedObject}
             onUpdateProperty={(prop, val) => canvasRef.current?.updateObjectProperty(prop, val)}
+            onApplyFilter={(filterType) => canvasRef.current?.applyFilter(filterType)}
             onZoomIn={() => canvasRef.current?.zoomIn()}
             onZoomOut={() => canvasRef.current?.zoomOut()}
             onSwitchView={handleSwitchView}
+            onBringForward={() => canvasRef.current?.bringForward()}
+            onSendBackward={() => canvasRef.current?.sendBackward()}
+            onBringToFront={() => canvasRef.current?.bringToFront()}
+            onSendToBack={() => canvasRef.current?.sendToBack()}
           />
         </aside>
       </main>

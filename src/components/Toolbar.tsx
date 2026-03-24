@@ -5,12 +5,12 @@ import {
   Circle, 
   Image as ImageIcon, 
   Trash2, 
-  ArrowUp, 
-  ArrowDown, 
   RotateCcw, 
   Download, 
   Save, 
-  ArrowLeft 
+  ArrowLeft,
+  Undo2,
+  Redo2
 } from 'lucide-react';
 
 interface ToolbarProps {
@@ -19,9 +19,9 @@ interface ToolbarProps {
   onAddCircle: () => void;
   onUploadImage: (file: File) => void;
   onDeleteSelected: () => void;
-  onBringForward: () => void;
-  onSendBackward: () => void;
   onResetCanvas: () => void;
+  onUndo: () => void;
+  onRedo: () => void;
   onDownload: () => void;
   onSave: () => void;
   onBackToProduct: () => void;
@@ -33,9 +33,9 @@ const Toolbar: React.FC<ToolbarProps> = ({
   onAddCircle,
   onUploadImage,
   onDeleteSelected,
-  onBringForward,
-  onSendBackward,
   onResetCanvas,
+  onUndo,
+  onRedo,
   onDownload,
   onSave,
   onBackToProduct
@@ -52,6 +52,15 @@ const Toolbar: React.FC<ToolbarProps> = ({
     <div className="bg-dark text-white p-3 rounded shadow-sm h-100 d-flex flex-column gap-3 overflow-auto" style={{ minWidth: '200px' }}>
       <h5 className="mb-3 border-bottom pb-2">Tools</h5>
       
+      <div className="d-flex gap-1 mb-2">
+        <button className="btn btn-outline-light btn-sm flex-grow-1 d-flex align-items-center justify-content-center gap-1" onClick={onUndo} title="Undo (Ctrl+Z)">
+          <Undo2 size={16} /> Undo
+        </button>
+        <button className="btn btn-outline-light btn-sm flex-grow-1 d-flex align-items-center justify-content-center gap-1" onClick={onRedo} title="Redo (Ctrl+Y)">
+          <Redo2 size={16} /> Redo
+        </button>
+      </div>
+
       <button className="btn btn-outline-light d-flex align-items-center gap-2" onClick={onAddText}>
         <Type size={18} /> Add Text
       </button>
@@ -76,23 +85,13 @@ const Toolbar: React.FC<ToolbarProps> = ({
       </button>
 
       <hr className="my-2" />
-
-      <button className="btn btn-outline-warning d-flex align-items-center gap-2" onClick={onBringForward}>
-        <ArrowUp size={18} /> Bring Forward
-      </button>
-      
-      <button className="btn btn-outline-warning d-flex align-items-center gap-2" onClick={onSendBackward}>
-        <ArrowDown size={18} /> Send Backward
-      </button>
-
-      <hr className="my-2" />
       
       <button className="btn btn-outline-danger d-flex align-items-center gap-2" onClick={onDeleteSelected}>
         <Trash2 size={18} /> Delete Selected
       </button>
       
       <button className="btn btn-outline-danger d-flex align-items-center gap-2" onClick={onResetCanvas}>
-        <RotateCcw size={18} /> Reset Canvas
+        <RotateCcw size={18} /> Clear All
       </button>
 
       <hr className="my-2 mt-auto" />
